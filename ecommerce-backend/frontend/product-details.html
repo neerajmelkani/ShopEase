@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Product details from ShopEase.">
+  <title>Product details — ShopEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/product-details.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/product-details.js" defer></script>
+</head>
+<body class="product-detail-page">
+  <a class="skip-link" href="#main-content">Skip to product details</a>
+  <header class="site-header">
+    <div class="header-inner page-shell">
+      <a class="brand" href="index.html" aria-label="ShopEase home"><span class="brand-mark" aria-hidden="true">S</span>ShopEase</a>
+      <form class="search-form" role="search" action="products.html" method="get">
+        <label class="visually-hidden" for="detail-search">Search products</label>
+        <input id="detail-search" name="q" type="search" placeholder="What are you looking for?">
+        <button type="submit" aria-label="Search products"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg></button>
+      </form>
+      <nav class="header-actions" aria-label="Main navigation">
+        <a class="text-link auth-link" href="login.html">Log in</a>
+        <a class="button button-small register-link" href="register.html">Sign up</a>
+        <a class="cart-link" href="cart.html" aria-label="Shopping cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L22 8H6"></path><circle cx="10" cy="20" r="1.2"></circle><circle cx="18" cy="20" r="1.2"></circle></svg></a>
+      </nav>
+    </div>
+    <nav class="category-nav page-shell" aria-label="Shop departments"><a href="products.html">All products</a><a href="products.html?category=home">Home &amp; living</a><a href="products.html?category=tech">Tech</a><a href="products.html?category=style">Style</a><a href="products.html?category=wellness">Wellness</a></nav>
+  </header>
+
+  <main id="main-content" class="page-shell detail-shell">
+    <nav class="detail-breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="products.html">Products</a><span aria-hidden="true">/</span><span id="breadcrumb-current" aria-current="page">Product details</span></nav>
+
+    <section id="details-loading" class="detail-loading" aria-live="polite">
+      <span class="loading-spinner" aria-hidden="true"></span><p>Finding the details…</p>
+      <div class="detail-skeleton" aria-hidden="true"><span></span><span></span><span></span></div>
+    </section>
+
+    <section id="details-error" class="detail-state" role="alert" hidden>
+      <div class="detail-state-icon error-icon" aria-hidden="true">!</div><h1>We couldn't load this product</h1><p id="details-error-text">Please try again in a moment.</p><button id="retry-product" class="button" type="button">Try again</button>
+    </section>
+
+    <section id="product-not-found" class="detail-state" hidden>
+      <div class="detail-state-icon" aria-hidden="true">⌕</div><h1>Product not found</h1><p>This product may have been removed or the link may be incomplete.</p><a class="button" href="products.html">Browse products</a>
+    </section>
+
+    <article id="product-content" class="product-detail" hidden aria-labelledby="product-name">
+      <div class="detail-visual-wrap">
+        <div id="product-gallery" class="product-gallery" aria-label="Product images">
+          <div class="detail-visual">
+            <img id="product-main-image" class="detail-main-image" alt="" hidden>
+            <div id="product-image-fallback" class="product-image-fallback" role="img" aria-label="Product image unavailable" hidden>Product image unavailable</div>
+          </div>
+          <div id="product-thumbnails" class="product-thumbnails" role="group" aria-label="Choose a product image"></div>
+        </div>
+        <p class="visual-caption">Product photos</p>
+      </div>
+
+      <div class="detail-copy">
+        <div class="detail-category-row"><span id="product-category" class="detail-category">Category</span><span class="detail-rating" aria-label="ShopEase product">ShopEase pick <span aria-hidden="true">✦</span></span></div>
+        <h1 id="product-name">Product name</h1>
+        <p id="product-price" class="detail-price"></p>
+        <div class="detail-divider"></div>
+        <h2 class="detail-section-title">About this find</h2>
+        <p id="product-description" class="detail-description"></p>
+
+        <div class="availability-row"><span id="stock-indicator" class="stock-indicator" aria-hidden="true"></span><span id="stock-message" class="stock-message"></span></div>
+
+        <div class="quantity-block"><label for="product-quantity">Quantity</label><div class="quantity-control"><button id="quantity-decrease" type="button" aria-label="Decrease quantity">−</button><input id="product-quantity" type="number" min="1" value="1" step="1" inputmode="numeric" aria-describedby="quantity-hint"><button id="quantity-increase" type="button" aria-label="Increase quantity">+</button></div><span id="quantity-hint" class="quantity-hint">Choose how many you'd like.</span></div>
+
+        <div id="cart-action-message" class="cart-action-message" role="status" aria-live="polite" hidden></div>
+        <div class="detail-actions"><button id="add-to-cart" class="button detail-add" type="button" disabled><span aria-hidden="true">＋</span> Add to cart</button><button id="buy-now" class="button detail-buy" type="button" disabled>Buy now <span aria-hidden="true">→</span></button></div>
+        <p class="auth-hint"><span aria-hidden="true">♧</span> Sign in with your customer account to add items to your cart.</p>
+        <a class="back-to-products" href="products.html"><span aria-hidden="true">←</span> Back to products</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer detail-footer"><div class="page-shell footer-bottom"><span>© 2026 ShopEase</span><span>Good finds for everyday moments <span class="footer-heart" aria-hidden="true">♥</span></span><div><a href="products.html">Continue shopping</a></div></div></footer>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Log in to your ShopEase account.">
+  <title>Log in — ShopEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/auth.js" defer></script>
+</head>
+<body class="auth-page">
+  <a class="skip-link" href="#auth-main">Skip to sign in</a>
+  <header class="auth-header page-shell">
+    <a class="brand" href="index.html" aria-label="ShopEase home"><span class="brand-mark" aria-hidden="true">S</span>ShopEase</a>
+    <a class="back-to-shop" href="index.html"><span aria-hidden="true">←</span> Back to shop</a>
+  </header>
+
+  <main id="auth-main" class="auth-layout page-shell">
+    <section class="auth-story" aria-labelledby="story-heading">
+      <div class="story-art" aria-hidden="true">
+        <span class="story-orbit story-orbit-one"></span><span class="story-orbit story-orbit-two"></span>
+        <span class="story-spark story-spark-one">✳</span><span class="story-spark story-spark-two">✦</span>
+        <div class="story-bag"><span class="story-bag-handle"></span><span class="story-bag-logo">S</span><span class="story-bag-smile"></span></div>
+        <div class="story-float story-float-top">☕ <small>little comforts</small></div>
+        <div class="story-float story-float-bottom">✿ <small>good things await</small></div>
+      </div>
+      <span class="eyebrow">Welcome to ShopEase</span>
+      <h1 id="story-heading">Your everyday<br>favorites are close.</h1>
+      <p>Pick up where you left off and find a few new things to love along the way.</p>
+      <div class="story-points"><span><i aria-hidden="true">✓</i> Thoughtful finds</span><span><i aria-hidden="true">✓</i> A simpler way to shop</span></div>
+    </section>
+
+    <section class="auth-card" aria-labelledby="form-title">
+      <div class="auth-card-heading">
+        <span class="auth-card-icon" aria-hidden="true">↗</span>
+        <p class="eyebrow">Good to see you</p>
+        <h2 id="form-title">Welcome back</h2>
+        <p class="auth-subtitle">Sign in to continue to your account.</p>
+      </div>
+
+      <div id="auth-message" class="auth-message" role="alert" aria-live="assertive" hidden></div>
+
+      <form id="login-form" class="auth-form" novalidate>
+        <div class="form-field">
+          <label for="login-email">Email address</label>
+          <input id="login-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" inputmode="email" required aria-describedby="login-email-error">
+          <span class="field-error" id="login-email-error"></span>
+        </div>
+
+        <div class="form-field">
+          <div class="label-row"><label for="login-password">Password</label><a id="forgot-password-link" class="subtle-link" href="#forgot-password">Forgot password?</a></div>
+          <div class="password-control">
+            <input id="login-password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required aria-describedby="login-password-error">
+            <button class="password-toggle" type="button" data-toggle-password="login-password" aria-label="Show password" aria-pressed="false">Show</button>
+          </div>
+          <span class="field-error" id="login-password-error"></span>
+        </div>
+
+        <div class="form-options"><label class="check-label" for="remember-me"><input id="remember-me" name="remember" type="checkbox"><span class="custom-check" aria-hidden="true"></span><span>Remember me</span></label></div>
+
+        <button class="auth-submit" type="submit"><span class="button-label">Log in</span><span class="button-arrow" aria-hidden="true">→</span><span class="button-spinner" aria-hidden="true"></span></button>
+      </form>
+
+      <p class="auth-switch">New to ShopEase? <a href="register.html">Create an account</a></p>
+      <p class="auth-privacy"><span aria-hidden="true">♧</span> Your account details stay yours.</p>
+    </section>
+  </main>
+
+  <footer class="auth-footer page-shell"><span>© 2026 ShopEase</span><span>Good finds for everyday living <i aria-hidden="true">♥</i></span><a href="index.html">Return to home</a></footer>
+</body>
+</html>

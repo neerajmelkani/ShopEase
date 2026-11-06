@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Review and manage customer orders in ShopEase.">
+  <title>Orders — ShopEase Admin</title>
+  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../css/admin.css"><link rel="stylesheet" href="../css/admin-management.css">
+  <script src="../js/api.js" defer></script><script src="../js/admin-orders.js" defer></script>
+</head>
+<body class="admin-page">
+  <a class="skip-link" href="#management-main">Skip to order management</a>
+  <div class="admin-layout">
+    <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin navigation">
+      <a class="brand admin-brand" href="../index.html"><span class="brand-mark" aria-hidden="true">S</span>ShopEase</a>
+      <p class="sidebar-caption">Store management</p>
+      <nav class="admin-nav">
+        <a class="admin-nav-link" href="dashboard.html"><span aria-hidden="true">⌂</span>Dashboard</a>
+        <a class="admin-nav-link" href="products.html"><span aria-hidden="true">▦</span>Products</a>
+        <a class="admin-nav-link" href="categories.html"><span aria-hidden="true">◇</span>Categories</a>
+        <a class="admin-nav-link is-active" href="orders.html" aria-current="page"><span aria-hidden="true">▤</span>Orders</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="admin-profile"><span class="profile-avatar" aria-hidden="true">A</span><span><strong>Administrator</strong><small>Admin account</small></span></div><button class="logout-button" id="logout-button" type="button"><span aria-hidden="true">↪</span>Log out</button></div>
+    </aside>
+    <main class="admin-main" id="management-main">
+      <header class="admin-topbar"><button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Open navigation" aria-controls="admin-sidebar" aria-expanded="false"><span></span><span></span><span></span></button><div class="topbar-context"><span class="topbar-kicker">ShopEase / Admin</span><strong>Order management</strong></div><a class="store-link" href="../index.html">View storefront <span aria-hidden="true">↗</span></a></header>
+      <div class="dashboard-content management-content">
+        <section class="dashboard-heading"><div><p class="admin-eyebrow">Fulfillment</p><h1>Orders</h1><p class="dashboard-intro">Review order status and open the available order summary.</p></div></section>
+        <div class="management-message" id="orders-message" role="status" aria-live="polite" hidden></div>
+        <div class="management-notice order-data-notice"><strong>Order data available</strong><span>The admin API does not include customer, delivery, or payment details. Search and payment-status filtering are therefore limited.</span></div>
+        <section class="management-panel panel" aria-label="Customer orders">
+          <form class="management-toolbar order-toolbar" id="orders-filter-form">
+            <label class="management-search"><span class="visually-hidden">Search by order ID</span><span aria-hidden="true">⌕</span><input id="order-search" type="search" inputmode="numeric" placeholder="Search order ID…"></label>
+            <label class="filter-label" for="order-status-filter">Order status</label>
+            <select id="order-status-filter"><option value="">All statuses</option><option value="PENDING">Pending</option><option value="CONFIRMED">Confirmed</option><option value="PROCESSING">Processing</option><option value="SHIPPED">Shipped</option><option value="DELIVERED">Delivered</option><option value="CANCELLED">Cancelled</option></select>
+            <label class="filter-label payment-filter-label" for="payment-status-filter">Payment</label><select id="payment-status-filter" disabled aria-describedby="payment-filter-note"><option>Unavailable from API</option></select><span id="payment-filter-note" class="visually-hidden">The admin order response does not include payment status.</span>
+            <button class="filter-button" type="submit">Apply</button><button class="filter-reset" id="clear-order-filters" type="button">Clear</button>
+          </form>
+          <div class="management-loading" id="orders-loading" role="status">Loading orders…</div>
+          <div class="management-error" id="orders-error" role="alert" hidden></div>
+          <div class="management-empty" id="orders-empty" hidden><strong>No orders found</strong><span>Try changing the order ID or status filter.</span></div>
+          <div class="management-table-wrap" id="orders-table-wrap" hidden>
+            <table class="management-table admin-orders-table"><thead><tr><th scope="col">Order</th><th scope="col">Customer</th><th scope="col">Order date</th><th scope="col">Total amount</th><th scope="col">Payment</th><th scope="col">Order status</th><th scope="col"><span class="visually-hidden">Details</span></th></tr></thead><tbody id="orders-table-body"></tbody></table>
+          </div>
+        </section>
+        <footer class="admin-footer"><span>ShopEase Admin</span><span>Order management</span></footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

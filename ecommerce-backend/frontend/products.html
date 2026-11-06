@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browse the ShopEase collection and find something for every day.">
+  <title>Shop all products — ShopEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/products.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/products.js" defer></script>
+</head>
+<body class="products-page">
+  <a class="skip-link" href="#main-content">Skip to products</a>
+  <header class="site-header">
+    <div class="header-inner page-shell">
+      <a class="brand" href="index.html" aria-label="ShopEase home"><span class="brand-mark" aria-hidden="true">S</span>ShopEase</a>
+      <form class="search-form" id="product-search-form" role="search">
+        <label class="visually-hidden" for="product-search">Search products</label>
+        <input id="product-search" name="q" type="search" placeholder="What are you looking for?" autocomplete="off">
+        <button type="submit" aria-label="Search products"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg></button>
+      </form>
+      <nav class="header-actions" aria-label="Main navigation">
+        <a class="text-link auth-link" href="login.html">Log in</a>
+        <a class="button button-small register-link" href="register.html">Sign up</a>
+        <a class="cart-link" href="cart.html" aria-label="Shopping cart, 0 items"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L22 8H6"></path><circle cx="10" cy="20" r="1.2"></circle><circle cx="18" cy="20" r="1.2"></circle></svg><span class="cart-count">0</span></a>
+      </nav>
+    </div>
+    <nav class="category-nav page-shell" aria-label="Shop departments">
+      <a href="products.html">All products</a><a href="products.html?category=home">Home &amp; living</a><a href="products.html?category=tech">Tech</a><a href="products.html?category=style">Style</a><a href="products.html?category=wellness">Wellness</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="listing-intro page-shell" aria-labelledby="listing-title">
+      <div class="breadcrumbs"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Shop all</span></div>
+      <div class="listing-heading-row"><div><span class="eyebrow">Find your next favorite</span><h1 id="listing-title">Shop all products</h1><p>Thoughtful finds for the little moments and the everyday ones.</p></div><span class="listing-decoration" aria-hidden="true">✳</span></div>
+    </section>
+
+    <section class="listing-layout page-shell" aria-label="Product catalog">
+      <aside class="filter-panel" aria-labelledby="filter-title">
+        <div class="filter-heading"><h2 id="filter-title">Filters</h2><button id="clear-filters" class="clear-filters" type="button">Clear all</button></div>
+        <fieldset class="category-filter">
+          <legend>Category</legend>
+          <div id="category-options" class="category-options" aria-live="polite"><span class="filter-loading"><span class="mini-spinner" aria-hidden="true"></span> Loading categories</span></div>
+        </fieldset>
+        <div class="filter-help"><span aria-hidden="true">✦</span><p>Find something good for every corner of your day.</p></div>
+      </aside>
+
+      <section class="listing-results" aria-label="Products">
+        <div class="results-toolbar">
+          <p id="result-summary" class="result-summary" aria-live="polite">Loading products…</p>
+          <label class="sort-control" for="sort-products"><span>Sort by</span><select id="sort-products" name="sort"><option value="price:ASC">Price: low to high</option><option value="price:DESC">Price: high to low</option><option value="name:ASC">Name: A to Z</option><option value="createdAt:DESC">Newest</option></select></label>
+        </div>
+
+        <div id="listing-message" class="listing-message" role="alert" hidden></div>
+        <div id="product-grid" class="catalog-grid" aria-live="polite" aria-busy="true"></div>
+        <section id="empty-state" class="empty-state" hidden aria-labelledby="empty-title">
+          <div class="empty-art" aria-hidden="true">⌕</div><h2 id="empty-title">No finds just yet</h2><p>Try another search or clear the filters to see all products.</p><button id="empty-clear-filters" class="button" type="button">Clear filters</button>
+        </section>
+        <nav id="pagination" class="pagination" aria-label="Product pages" hidden></nav>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-shell footer-main">
+      <div class="footer-brand"><a class="brand brand-light" href="index.html"><span class="brand-mark" aria-hidden="true">S</span>ShopEase</a><p>Good finds for the life you live.</p></div>
+      <div class="footer-column"><h2>Explore</h2><a href="products.html">All products</a><a href="products.html?category=home">Home &amp; living</a><a href="products.html?category=tech">Tech &amp; gadgets</a></div>
+      <div class="footer-column"><h2>Your account</h2><a href="login.html">Log in</a><a href="register.html">Create an account</a><a href="orders.html">Order history</a></div>
+      <div class="footer-column"><h2>Here to help</h2><a href="mailto:hello@shopease.example">Contact us</a><a href="#shipping">Shipping &amp; returns</a><a href="#faq">FAQs</a></div>
+    </div>
+    <div class="page-shell footer-bottom"><span>© 2026 ShopEase</span><span>Made for everyday moments <span class="footer-heart" aria-hidden="true">♥</span></span><div><a href="#privacy">Privacy</a><a href="#terms">Terms</a></div></div>
+  </footer>
+</body>
+</html>

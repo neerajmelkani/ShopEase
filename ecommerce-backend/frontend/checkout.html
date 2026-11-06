@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Review your order and delivery details on ShopEase.">
+  <title>Checkout — ShopEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/checkout.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/checkout.js" defer></script>
+</head>
+<body class="checkout-page">
+  <a class="skip-link" href="#main-content">Skip to checkout</a>
+  <header class="site-header">
+    <div class="header-inner page-shell">
+      <a class="brand" href="index.html" aria-label="ShopEase home"><span class="brand-mark" aria-hidden="true">S</span>ShopEase</a>
+      <form class="search-form" role="search" action="products.html" method="get">
+        <label class="visually-hidden" for="checkout-search">Search products</label>
+        <input id="checkout-search" name="q" type="search" placeholder="What are you looking for?">
+        <button type="submit" aria-label="Search products"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg></button>
+      </form>
+      <nav class="header-actions" aria-label="Main navigation"><a class="text-link" href="products.html">Continue shopping</a><a class="cart-link" href="cart.html" aria-label="Shopping cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L22 8H6"></path><circle cx="10" cy="20" r="1.2"></circle><circle cx="18" cy="20" r="1.2"></circle></svg></a></nav>
+    </div>
+    <nav class="category-nav page-shell" aria-label="Shop departments"><a href="products.html">All products</a><a href="products.html?category=home">Home &amp; living</a><a href="products.html?category=tech">Tech</a><a href="products.html?category=style">Style</a><a href="products.html?category=wellness">Wellness</a></nav>
+  </header>
+
+  <main id="main-content" class="page-shell checkout-shell">
+    <nav class="checkout-breadcrumbs" aria-label="Checkout progress"><a href="cart.html">Cart</a><span aria-hidden="true">/</span><span aria-current="step">Checkout</span><span aria-hidden="true">/</span><span>Confirmation</span></nav>
+    <div class="checkout-title"><span class="eyebrow">One last step</span><h1>Checkout</h1><p>Review your items and choose how you'd like to pay.</p></div>
+
+    <div id="checkout-status" class="checkout-status" role="alert" hidden></div>
+
+    <section id="checkout-loading" class="checkout-loading" aria-live="polite"><span class="checkout-spinner" aria-hidden="true"></span><p>Preparing your checkout…</p><div class="checkout-skeleton" aria-hidden="true"><span></span><span></span><span></span></div></section>
+    <section id="checkout-error" class="checkout-state" role="alert" hidden><div class="checkout-state-icon error-icon" aria-hidden="true">!</div><h2>Checkout couldn't be loaded</h2><p id="checkout-error-message">Please try again.</p><button id="retry-checkout" class="button" type="button">Try again</button></section>
+    <section id="checkout-empty" class="checkout-state" hidden><div class="checkout-state-icon" aria-hidden="true">⌑</div><h2>Your cart is empty</h2><p>Add something you love before starting checkout.</p><a class="button" href="products.html">Explore products</a></section>
+
+    <section id="checkout-content" class="checkout-layout" hidden aria-label="Checkout details">
+      <div class="checkout-main-column">
+        <section id="delivery-section" class="checkout-card delivery-card" aria-labelledby="delivery-title">
+          <div class="checkout-section-heading"><span class="step-number">1</span><div><h2 id="delivery-title">Delivery information</h2><p>Where should we send your order?</p></div></div>
+          <div class="delivery-api-notice" role="note"><span aria-hidden="true">ⓘ</span><p>The current order API does not accept or save delivery details. These fields are validated here but are not transmitted or attached to your order.</p></div>
+
+          <form id="checkout-form" novalidate>
+            <div class="checkout-fields">
+              <div class="checkout-field field-wide"><label for="delivery-name">Full name</label><input id="delivery-name" name="fullName" type="text" autocomplete="name" placeholder="Name for delivery" required aria-describedby="delivery-name-error"><span id="delivery-name-error" class="field-error"></span></div>
+              <div class="checkout-field"><label for="delivery-phone">Phone number</label><input id="delivery-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="e.g. +91 98765 43210" required aria-describedby="delivery-phone-error"><span id="delivery-phone-error" class="field-error"></span></div>
+              <div class="checkout-field"><label for="delivery-pin">PIN code</label><input id="delivery-pin" name="pinCode" type="text" autocomplete="postal-code" inputmode="numeric" placeholder="Postal code" required aria-describedby="delivery-pin-error"><span id="delivery-pin-error" class="field-error"></span></div>
+              <div class="checkout-field field-wide"><label for="delivery-address">Address</label><textarea id="delivery-address" name="address" autocomplete="street-address" rows="3" placeholder="House, street, area" required aria-describedby="delivery-address-error"></textarea><span id="delivery-address-error" class="field-error"></span></div>
+              <div class="checkout-field"><label for="delivery-city">City</label><input id="delivery-city" name="city" type="text" autocomplete="address-level2" placeholder="City" required aria-describedby="delivery-city-error"><span id="delivery-city-error" class="field-error"></span></div>
+              <div class="checkout-field"><label for="delivery-state">State</label><input id="delivery-state" name="state" type="text" autocomplete="address-level1" placeholder="State" required aria-describedby="delivery-state-error"><span id="delivery-state-error" class="field-error"></span></div>
+            </div>
+          </form>
+        </section>
+
+        <section id="payment-section" class="checkout-card payment-card" aria-labelledby="payment-title">
+          <div class="checkout-section-heading"><span class="step-number">2</span><div><h2 id="payment-title">Payment method</h2><p>Choose an available payment option.</p></div></div>
+          <fieldset class="payment-options"><legend class="visually-hidden">Choose payment method</legend>
+            <label class="payment-option is-selected"><input type="radio" name="paymentMethod" value="COD" checked><span class="radio-indicator" aria-hidden="true"></span><span class="payment-option-icon" aria-hidden="true">▣</span><span class="payment-option-copy"><strong>Cash on Delivery</strong><small>Pay when your order arrives</small></span><span class="payment-selected-tag">Selected</span></label>
+            <label class="payment-option is-disabled"><input type="radio" name="paymentMethod" value="RAZORPAY" disabled><span class="radio-indicator" aria-hidden="true"></span><span class="payment-option-icon razorpay-icon" aria-hidden="true">R</span><span class="payment-option-copy"><strong>Razorpay</strong><small>Online payment</small></span><span class="coming-soon">Coming soon</span></label>
+          </fieldset>
+        </section>
+
+        <section id="pending-payment-panel" class="pending-payment-panel" hidden aria-labelledby="pending-payment-title">
+          <span class="pending-icon" aria-hidden="true">✓</span><div><h2 id="pending-payment-title">Your order is already placed</h2><p id="pending-payment-copy">Your order is saved. Retry COD setup below; this will not create another order.</p><strong id="pending-order-number"></strong></div>
+        </section>
+
+        <div class="checkout-submit-row"><button id="place-order" class="button checkout-submit" type="submit" form="checkout-form"><span id="place-order-label">Place order</span><span aria-hidden="true">→</span></button><button id="retry-cod" class="button checkout-submit" type="button" hidden><span id="retry-cod-label">Retry COD setup</span><span aria-hidden="true">→</span></button><p class="checkout-terms">By placing your order, you agree to ShopEase's <a href="#terms">terms</a>.</p></div>
+      </div>
+
+      <aside class="checkout-summary checkout-card" aria-labelledby="summary-title">
+        <div class="summary-heading"><span class="summary-icon" aria-hidden="true">✦</span><div><h2 id="summary-title">Order summary</h2><p id="summary-item-count">Loading items…</p></div></div>
+        <div id="checkout-items" class="checkout-items" aria-live="polite"></div>
+        <div class="checkout-total-row"><span>Order total</span><strong id="checkout-total">—</strong></div>
+        <p class="checkout-total-note">Total amount is provided by ShopEase from current cart or order prices.</p>
+        <a id="edit-cart-link" class="edit-cart-link" href="cart.html"><span aria-hidden="true">←</span> Back to cart</a>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer checkout-footer"><div class="page-shell footer-bottom"><span>© 2026 ShopEase</span><span>Good finds for everyday moments <span class="footer-heart" aria-hidden="true">♥</span></span><div><a href="products.html">Continue shopping</a></div></div></footer>
+</body>
+</html>

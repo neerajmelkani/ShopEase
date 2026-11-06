@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Your ShopEase order has been placed.">
+  <title>Order confirmed — ShopEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/order-confirmation.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/order-confirmation.js" defer></script>
+</head>
+<body class="confirmation-page">
+  <a class="skip-link" href="#main-content">Skip to confirmation</a>
+  <header class="site-header">
+    <div class="header-inner page-shell">
+      <a class="brand" href="index.html" aria-label="ShopEase home"><span class="brand-mark" aria-hidden="true">S</span>ShopEase</a>
+      <nav class="confirmation-nav" aria-label="Main navigation"><a href="products.html">Continue shopping</a><a class="cart-link" href="cart.html" aria-label="Shopping cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L22 8H6"></path><circle cx="10" cy="20" r="1.2"></circle><circle cx="18" cy="20" r="1.2"></circle></svg></a></nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="page-shell confirmation-shell">
+    <section id="confirmation-loading" class="confirmation-loading" aria-live="polite"><span class="confirmation-spinner" aria-hidden="true"></span><p>Confirming your order…</p></section>
+    <section id="confirmation-error" class="confirmation-error" role="alert" hidden><div class="confirmation-error-icon" aria-hidden="true">!</div><h1>We couldn't load your confirmation</h1><p id="confirmation-error-message">Please check your order details and try again.</p><button id="retry-confirmation" class="button" type="button">Try again</button></section>
+
+    <article id="confirmation-content" class="confirmation-card" hidden aria-labelledby="confirmation-title">
+      <div class="confirmation-art" aria-hidden="true"><span class="confirmation-halo"></span><span class="confirmation-check">✓</span><span class="confirmation-spark spark-left">✳</span><span class="confirmation-spark spark-right">✦</span></div>
+      <span class="eyebrow">A good choice</span>
+      <h1 id="confirmation-title">Your order is confirmed.</h1>
+      <p class="confirmation-thanks">Thanks for shopping with ShopEase. We’ve received your order.</p>
+      <div class="confirmation-details" aria-label="Order confirmation details">
+        <div><span>Order ID</span><strong id="confirmed-order-id">—</strong></div>
+        <div><span>Order amount</span><strong id="confirmed-order-amount">—</strong></div>
+        <div><span>Payment method</span><strong id="confirmed-payment-method">—</strong></div>
+        <div><span>Payment status</span><strong id="confirmed-payment-status" class="pending-status">—</strong></div>
+      </div>
+      <p class="cod-note"><span aria-hidden="true">ⓘ</span> Cash on Delivery stays pending until payment is collected when your order arrives.</p>
+      <div class="confirmation-actions"><a id="view-order-button" class="button view-order-button" href="orders.html">View order</a><a class="continue-button" href="products.html">Continue shopping <span aria-hidden="true">→</span></a></div>
+    </article>
+  </main>
+
+  <footer class="site-footer confirmation-footer"><div class="page-shell footer-bottom"><span>© 2026 ShopEase</span><span>Good finds for everyday moments <span class="footer-heart" aria-hidden="true">♥</span></span><div><a href="products.html">Shop all</a></div></div></footer>
+</body>
+</html>

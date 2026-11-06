@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Review an order summary and update its status.">
+  <title>Order Details — ShopEase Admin</title>
+  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../css/admin.css"><link rel="stylesheet" href="../css/admin-management.css">
+  <script src="../js/api.js" defer></script><script src="../js/admin-order-details.js" defer></script>
+</head>
+<body class="admin-page">
+  <a class="skip-link" href="#management-main">Skip to order details</a>
+  <div class="admin-layout">
+    <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin navigation">
+      <a class="brand admin-brand" href="../index.html"><span class="brand-mark" aria-hidden="true">S</span>ShopEase</a>
+      <p class="sidebar-caption">Store management</p>
+      <nav class="admin-nav">
+        <a class="admin-nav-link" href="dashboard.html"><span aria-hidden="true">⌂</span>Dashboard</a>
+        <a class="admin-nav-link" href="products.html"><span aria-hidden="true">▦</span>Products</a>
+        <a class="admin-nav-link" href="categories.html"><span aria-hidden="true">◇</span>Categories</a>
+        <a class="admin-nav-link is-active" href="orders.html" aria-current="page"><span aria-hidden="true">▤</span>Orders</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="admin-profile"><span class="profile-avatar" aria-hidden="true">A</span><span><strong>Administrator</strong><small>Admin account</small></span></div><button class="logout-button" id="logout-button" type="button"><span aria-hidden="true">↪</span>Log out</button></div>
+    </aside>
+    <main class="admin-main" id="management-main">
+      <header class="admin-topbar"><button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Open navigation" aria-controls="admin-sidebar" aria-expanded="false"><span></span><span></span><span></span></button><div class="topbar-context"><span class="topbar-kicker">ShopEase / Admin</span><strong>Order details</strong></div><a class="store-link" href="../index.html">View storefront <span aria-hidden="true">↗</span></a></header>
+      <div class="dashboard-content management-content order-details-content">
+        <a class="back-to-orders" href="orders.html"><span aria-hidden="true">←</span> Back to orders</a>
+        <div class="management-loading" id="order-loading" role="status">Loading order summary…</div>
+        <div class="management-error" id="order-error" role="alert" hidden></div>
+        <div id="order-content" hidden>
+          <section class="order-detail-heading">
+            <div><p class="admin-eyebrow">Order summary</p><h1>Order <span id="detail-order-id"></span></h1><p class="dashboard-intro" id="detail-order-date"></p></div>
+            <span class="order-status-badge detail-status" id="detail-order-status"></span>
+          </section>
+          <div class="management-message" id="order-message" role="status" aria-live="polite" hidden></div>
+          <div class="management-notice order-data-notice"><strong>Some details aren’t available</strong><span>The admin read API returns only the order summary. It does not provide customer details, delivery address, payment method/status, or item details.</span></div>
+          <div class="order-detail-grid">
+            <section class="management-panel panel order-items-panel" aria-labelledby="items-heading">
+              <div class="management-panel-heading"><div><h2 id="items-heading">Ordered products</h2><span id="item-source-note">Not included in the admin order read response</span></div></div>
+              <div class="detail-unavailable" id="items-unavailable">Product names, quantities, and item prices are not available through the current admin read API.</div>
+              <div class="management-table-wrap" id="items-table-wrap" hidden><table class="management-table order-items-table"><thead><tr><th scope="col">Product</th><th scope="col">Quantity</th><th scope="col">Unit price</th><th scope="col">Subtotal</th></tr></thead><tbody id="order-items-body"></tbody></table></div>
+            </section>
+            <aside class="order-side-column">
+              <section class="management-panel panel order-summary-panel" aria-labelledby="summary-heading"><div class="management-panel-heading"><div><h2 id="summary-heading">Order summary</h2></div></div><dl class="order-summary-list"><div><dt>Order ID</dt><dd id="summary-order-id"></dd></div><div><dt>Order date</dt><dd id="summary-order-date"></dd></div><div><dt>Total amount</dt><dd class="summary-total" id="summary-total"></dd></div><div><dt>Payment method</dt><dd class="unavailable-value">Not provided</dd></div><div><dt>Payment status</dt><dd class="unavailable-value">Not provided</dd></div></dl></section>
+              <section class="management-panel panel customer-panel" aria-labelledby="customer-heading"><div class="management-panel-heading"><div><h2 id="customer-heading">Customer &amp; delivery</h2></div></div><dl class="order-summary-list"><div><dt>Customer</dt><dd class="unavailable-value">Not provided</dd></div><div><dt>Delivery address</dt><dd class="unavailable-value">Not stored on the order entity</dd></div></dl></section>
+            </aside>
+          </div>
+          <section class="management-panel panel status-update-panel" aria-labelledby="status-update-heading"><div class="status-update-copy"><p class="admin-eyebrow">Order workflow</p><h2 id="status-update-heading">Update order status</h2><p id="status-help">Choose a valid next status for this order.</p></div><form id="status-form" class="status-update-form"><label class="visually-hidden" for="next-status">Next order status</label><select id="next-status" required></select><button class="management-primary" id="update-status-button" type="submit">Update status</button></form><p class="status-terminal-note" id="status-terminal-note" hidden>This order is in a final status and cannot be changed.</p></section>
+        </div>
+        <footer class="admin-footer"><span>ShopEase Admin</span><span>Order details</span></footer>
+      </div>
+    </main>
+  </div>
+
+  <dialog class="management-dialog status-confirm-dialog" id="status-confirm-dialog" aria-labelledby="status-confirm-title">
+    <div class="management-form"><div class="dialog-heading"><div><p class="admin-eyebrow">Confirm order update</p><h2 id="status-confirm-title">Change order status?</h2></div><button class="dialog-close" id="close-status-dialog" type="button" aria-label="Close">×</button></div><p id="status-confirm-text" class="status-confirm-text"></p><div class="dialog-actions"><button class="management-secondary" id="cancel-status-update" type="button">Keep current status</button><button class="management-primary" id="confirm-status-update" type="button">Confirm update</button></div></div>
+  </dialog>
+</body>
+</html>

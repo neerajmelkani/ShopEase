@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Manage the ShopEase product catalog.">
+  <title>Products — ShopEase Admin</title>
+  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../css/admin.css"><link rel="stylesheet" href="../css/admin-management.css">
+  <script src="../js/api.js" defer></script><script src="../js/admin-products.js" defer></script>
+</head>
+<body class="admin-page">
+  <a class="skip-link" href="#management-main">Skip to product management</a>
+  <div class="admin-layout">
+    <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin navigation">
+      <a class="brand admin-brand" href="../index.html"><span class="brand-mark" aria-hidden="true">S</span>ShopEase</a>
+      <p class="sidebar-caption">Store management</p>
+      <nav class="admin-nav">
+        <a class="admin-nav-link" href="dashboard.html"><span aria-hidden="true">⌂</span>Dashboard</a>
+        <a class="admin-nav-link is-active" href="products.html" aria-current="page"><span aria-hidden="true">▦</span>Products</a>
+        <a class="admin-nav-link" href="categories.html"><span aria-hidden="true">◇</span>Categories</a>
+        <a class="admin-nav-link" href="orders.html"><span aria-hidden="true">▤</span>Orders</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="admin-profile"><span class="profile-avatar" aria-hidden="true">A</span><span><strong>Administrator</strong><small>Admin account</small></span></div><button class="logout-button" id="logout-button" type="button"><span aria-hidden="true">↪</span>Log out</button></div>
+    </aside>
+    <main class="admin-main" id="management-main">
+      <header class="admin-topbar"><button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Open navigation" aria-controls="admin-sidebar" aria-expanded="false"><span></span><span></span><span></span></button><div class="topbar-context"><span class="topbar-kicker">ShopEase / Admin</span><strong>Product management</strong></div><a class="store-link" href="../index.html">View storefront <span aria-hidden="true">↗</span></a></header>
+      <div class="dashboard-content management-content">
+        <section class="dashboard-heading"><div><p class="admin-eyebrow">Catalog</p><h1>Products</h1><p class="dashboard-intro">Add, update, and organize the products in your store.</p></div><button class="management-primary" id="add-product-button" type="button"><span aria-hidden="true">＋</span> Add product</button></section>
+        <div class="management-message" id="products-message" role="status" aria-live="polite" hidden></div>
+        <div class="management-notice"><strong>Product images</strong><span>Enter verified direct HTTPS photo URLs, one per line. Products can have up to 20 images.</span></div>
+        <section class="management-panel panel" aria-label="Product catalog">
+          <form class="management-toolbar" id="product-filter-form">
+            <label class="management-search"><span class="visually-hidden">Search products by name</span><span aria-hidden="true">⌕</span><input id="product-search" type="search" maxlength="255" placeholder="Search product name…"></label>
+            <label class="filter-label" for="category-filter">Category</label><select id="category-filter"><option value="">All categories</option></select>
+            <button class="filter-button" type="submit">Search</button>
+            <button class="filter-reset" id="clear-filters" type="button">Clear</button>
+          </form>
+          <div class="management-loading" id="products-loading" role="status">Loading products…</div>
+          <div class="management-error" id="products-error" role="alert" hidden></div>
+          <div class="management-empty" id="products-empty" hidden><strong>No products found</strong><span>Try a different search or add a product to the catalog.</span></div>
+          <div class="management-table-wrap" id="products-table-wrap" hidden>
+            <table class="management-table product-table"><thead><tr><th scope="col">Product</th><th scope="col">Category</th><th scope="col">Price</th><th scope="col">Stock</th><th scope="col">Availability</th><th scope="col">Updated</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr></thead><tbody id="products-table-body"></tbody></table>
+          </div>
+          <div class="management-pagination" id="products-pagination" hidden><span id="page-summary"></span><div><button class="page-button" id="previous-page" type="button">← Previous</button><button class="page-button" id="next-page" type="button">Next →</button></div></div>
+        </section>
+        <footer class="admin-footer"><span>ShopEase Admin</span><span>Product catalog</span></footer>
+      </div>
+    </main>
+  </div>
+
+  <dialog class="management-dialog" id="product-dialog" aria-labelledby="product-dialog-title">
+    <form id="product-form" class="management-form" novalidate>
+      <div class="dialog-heading"><div><p class="admin-eyebrow">Catalog item</p><h2 id="product-dialog-title">Add product</h2></div><button class="dialog-close" id="close-product-dialog" type="button" aria-label="Close">×</button></div>
+      <div class="dialog-message" id="product-form-message" role="alert" hidden></div>
+      <label for="product-name">Name <span>*</span></label><input id="product-name" name="name" required maxlength="255" autocomplete="off"><small class="field-hint">Up to 255 characters.</small>
+      <label for="product-description">Description</label><textarea id="product-description" name="description" rows="3" maxlength="2000"></textarea>
+      <div class="form-two-column"><div><label for="product-price">Price <span>*</span></label><input id="product-price" name="price" type="number" min="0.01" max="9999999999.99" step="0.01" required inputmode="decimal"></div><div><label for="product-stock">Stock quantity <span>*</span></label><input id="product-stock" name="stockQuantity" type="number" min="0" max="2147483647" step="1" required inputmode="numeric"></div></div>
+      <label for="product-category">Category</label><select id="product-category" name="categoryId"><option value="">No category</option></select>
+      <label for="product-image-urls">Product photo URLs</label><textarea id="product-image-urls" name="imageUrls" rows="4" placeholder="https://… (one URL per line)"></textarea><small class="field-hint">Use distinct, relevant product photos. The first image is shown in the catalog.</small>
+      <div class="dialog-actions"><button class="management-secondary" id="cancel-product" type="button">Cancel</button><button class="management-primary" id="save-product" type="submit">Save product</button></div>
+    </form>
+  </dialog>
+</body>
+</html>

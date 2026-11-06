@@ -1,0 +1,28 @@
+# Market-based demo product catalog
+
+`market-based-demo-products.tsv` is a demo seed catalog with exactly 70 products:
+
+- Computer Accessories: 20
+- Electronic Items: 20
+- Clothing: 15
+- Sports: 15
+
+All `price` values are plain numeric INR values for the existing `Product.price` BigDecimal field. The TSV retains a source URL, research date, and semicolon-separated `imageUrls` column. The application seeder does not persist the price research metadata.
+
+For a new empty database, the seeder requires at least three distinct HTTPS image URLs for every row. The image catalog remains incomplete: 45 of 70 rows currently have three distinct image URLs (135 distinct URLs in total). The complete rows are Logitech M185, M331 Silent Plus, M196, Pebble Mouse 2 M350s, G402 Hyperion Fury, M220, G203 LIGHTSYNC, Signature M650, MX Master 3S, Signature M650-L, C270, Jio JCM0112, Brio 500, MK120, MK235, Zebronics Companion 302, K380s Pebble Keys 2, boAt Airdopes 148 Gen 2, Airdopes 181 Pro, Rockerz 551 ANC Pro, Airdopes Prime 701 ANC, BassHeads 100, Rockerz Trinity, Rockerz 460, Nirvana X, Airdopes 170, Levi's 512 Light Fade, Puma Essentials No. 1 Logo Men's Tee, Kipsta Football Training Ball F300, UEFA Europa League 25/26 Official Ball Size 5, Men's Football Shoes Essential 100+ MG AG, Adult Football Shin Pads Essential 100, Pro Basketball Size 7, Basketball FIBA Grip Pro BT900X Size 7, Decathlon Adult Badminton Racket BR 100 Starter Set, BR 100 Red, Multisport Badminton Net Speednet 5M V2, Artengo Tennis Racket Aluminium TR100, Tennis Ball ITF TB120 x3, Adult Poplar Wood Cricket Bat T500, Adult Kashmir Willow Cricket Bat KW150, Domyos 10 kg Hex Dumbbell, Lenovo 300 Full HD Webcam, HP K280 Wired Gaming Keyboard, and Honeywell 7-in-1 Type-C Docking Station. Image URLs were opened directly in a browser during implementation and displayed as images, which verifies availability at that time, not ongoing availability or an embedding license. Batch 1 added nine browser-verified images on 2026-11-02: the Lenovo shop gallery images loaded at 500×400, the Reliance Digital HP K280 images at 450×450, and the Honeywell Connection dock images at 416×416.
+
+The 25 incomplete rows are boAt Airdopes Joy TWS Earbuds, Samsung 25 W USB-C Power Adapter, Samsung 60 W GaN Travel Power Adapter, Samsung 35 W Dual-Port Power Adapter, Samsung 65 W Super Fast Charging Adapter, Samsung 10,000 mAh 25 W Power Bank, Samsung Galaxy 25 W Wireless Power Bank, boAt PartyPal 63 Pro Bluetooth Speaker, Philips TAX2208 Bluetooth Party Speaker, JBL PartyBox Encore 2 Speaker with Microphone, Sony SRS-ULT500 ULT TOWER 5 Speaker, Levi's 511 Slim Fit Low-Distress Jeans, Levi's 511 Slim Fit Light Fade Jeans, Levi's 541 Tapered Fit Jeans, Levi's 527 Slim Bootcut Jeans, Puma Performance SS Drycell Training T-Shirt, Puma Men's Essential Track Pants, Puma Men Cricket Woven Pants, Puma Men's Woven Pants, Biba Botanical Printed V-Neck Kurti, Biba Ethnic Motifs Printed Straight Kurti, Biba Floral Printed Round-Neck Straight Kurti, Biba Floral Printed Kurti, Biba Women's Printed Kurti, and Perfly Adult Badminton Racket BR 190. Earlier research paused before these rows had galleries. Perfly BR 190 still requires exact-brand image verification and remains in the incomplete list for a later batch.
+
+Prices are representative demo selling prices based on Indian retailer listing pages reviewed on 2026-11-02; individual retailer pages may show an earlier listing update date. They are not guaranteed live offers, inventory, or official price quotes. Recheck the row's source URL before using a value commercially. No discounts, MRP values, or original prices are asserted.
+
+## Loading the catalog
+
+The catalog loader is disabled by default and runs only with the `demo-catalog` Spring profile. On an empty products table, it inserts the catalog only when all 70 rows meet the image requirement. If products already exist, it matches catalog rows by product name and adds only the image URLs for rows with three verified photos, leaving product fields and existing image URLs intact. This allows an existing demo database to be repaired without replacing its products.
+
+Configure the normal database and JWT environment variables, then run:
+
+```powershell
+mvn spring-boot:run "-Dspring-boot.run.profiles=demo-catalog"
+```
+
+The profile is intended for a development/demo database. Disable the profile after loading.

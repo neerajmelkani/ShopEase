@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Create your ShopEase account.">
+  <title>Create an account — ShopEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/auth.js" defer></script>
+</head>
+<body class="auth-page">
+  <a class="skip-link" href="#auth-main">Skip to create account</a>
+  <header class="auth-header page-shell">
+    <a class="brand" href="index.html" aria-label="ShopEase home"><span class="brand-mark" aria-hidden="true">S</span>ShopEase</a>
+    <a class="back-to-shop" href="index.html"><span aria-hidden="true">←</span> Back to shop</a>
+  </header>
+
+  <main id="auth-main" class="auth-layout auth-layout-register page-shell">
+    <section class="auth-story" aria-labelledby="story-heading">
+      <div class="story-art register-art" aria-hidden="true">
+        <span class="story-orbit story-orbit-one"></span><span class="story-orbit story-orbit-two"></span>
+        <span class="story-spark story-spark-one">✳</span><span class="story-spark story-spark-two">✦</span>
+        <div class="story-bag"><span class="story-bag-handle"></span><span class="story-bag-logo">S</span><span class="story-bag-smile"></span></div>
+        <div class="story-float story-float-top">✿ <small>make it yours</small></div>
+        <div class="story-float story-float-bottom">☀ <small>good things ahead</small></div>
+      </div>
+      <span class="eyebrow">A good place to begin</span>
+      <h1 id="story-heading">Make room for<br>your next favorite.</h1>
+      <p>Create an account and keep your ShopEase experience all in one place.</p>
+      <div class="story-points"><span><i aria-hidden="true">✓</i> Save your favorites</span><span><i aria-hidden="true">✓</i> Keep track of your orders</span></div>
+    </section>
+
+    <section class="auth-card register-card" aria-labelledby="form-title">
+      <div class="auth-card-heading">
+        <span class="auth-card-icon" aria-hidden="true">✳</span>
+        <p class="eyebrow">Join the good finds</p>
+        <h2 id="form-title">Create your account</h2>
+        <p class="auth-subtitle">It only takes a moment to get started.</p>
+      </div>
+
+      <div id="auth-message" class="auth-message" role="alert" aria-live="assertive" hidden></div>
+
+      <form id="register-form" class="auth-form" novalidate>
+        <div class="form-field">
+          <label for="register-name">Full name</label>
+          <input id="register-name" name="name" type="text" maxlength="255" placeholder="Your name" autocomplete="name" required aria-describedby="register-name-error">
+          <span class="field-error" id="register-name-error"></span>
+        </div>
+
+        <div class="form-field">
+          <label for="register-email">Email address</label>
+          <input id="register-email" name="email" type="email" maxlength="255" placeholder="you@example.com" autocomplete="email" inputmode="email" required aria-describedby="register-email-error">
+          <span class="field-error" id="register-email-error"></span>
+        </div>
+
+        <div class="form-field">
+          <label for="register-password">Password</label>
+          <div class="password-control">
+            <input id="register-password" name="password" type="password" placeholder="At least 8 characters" autocomplete="new-password" required aria-describedby="register-password-hint register-password-error">
+            <button class="password-toggle" type="button" data-toggle-password="register-password" aria-label="Show password" aria-pressed="false">Show</button>
+          </div>
+          <span class="field-hint" id="register-password-hint">Use at least 8 characters.</span>
+          <span class="field-error" id="register-password-error"></span>
+        </div>
+
+        <div class="form-field">
+          <label for="confirm-password">Confirm password</label>
+          <div class="password-control">
+            <input id="confirm-password" name="confirmPassword" type="password" placeholder="Enter your password again" autocomplete="new-password" required aria-describedby="confirm-password-error">
+            <button class="password-toggle" type="button" data-toggle-password="confirm-password" aria-label="Show password" aria-pressed="false">Show</button>
+          </div>
+          <span class="field-error" id="confirm-password-error"></span>
+        </div>
+
+        <button class="auth-submit" type="submit"><span class="button-label">Create account</span><span class="button-arrow" aria-hidden="true">→</span><span class="button-spinner" aria-hidden="true"></span></button>
+      </form>
+
+      <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+      <p class="auth-privacy"><span aria-hidden="true">♧</span> Your account details stay yours.</p>
+    </section>
+  </main>
+
+  <footer class="auth-footer page-shell"><span>© 2026 ShopEase</span><span>Good finds for everyday living <i aria-hidden="true">♥</i></span><a href="index.html">Return to home</a></footer>
+</body>
+</html>

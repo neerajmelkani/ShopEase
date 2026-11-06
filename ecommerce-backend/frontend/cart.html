@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Review and update your ShopEase shopping cart.">
+  <title>Your cart — ShopEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cart.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/cart.js" defer></script>
+</head>
+<body class="cart-page">
+  <a class="skip-link" href="#main-content">Skip to your cart</a>
+  <header class="site-header">
+    <div class="header-inner page-shell">
+      <a class="brand" href="index.html" aria-label="ShopEase home"><span class="brand-mark" aria-hidden="true">S</span>ShopEase</a>
+      <form class="search-form" role="search" action="products.html" method="get">
+        <label class="visually-hidden" for="cart-search">Search products</label>
+        <input id="cart-search" name="q" type="search" placeholder="What are you looking for?">
+        <button type="submit" aria-label="Search products"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg></button>
+      </form>
+      <nav class="header-actions" aria-label="Main navigation">
+        <a class="text-link auth-link" href="login.html?returnTo=cart.html">Log in</a>
+        <a class="button button-small register-link" href="register.html">Sign up</a>
+        <a class="cart-link is-current" href="cart.html" aria-current="page" aria-label="Shopping cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L22 8H6"></path><circle cx="10" cy="20" r="1.2"></circle><circle cx="18" cy="20" r="1.2"></circle></svg></a>
+      </nav>
+    </div>
+    <nav class="category-nav page-shell" aria-label="Shop departments"><a href="products.html">All products</a><a href="products.html?category=home">Home &amp; living</a><a href="products.html?category=tech">Tech</a><a href="products.html?category=style">Style</a><a href="products.html?category=wellness">Wellness</a></nav>
+  </header>
+
+  <main id="main-content" class="page-shell cart-shell">
+    <nav class="cart-breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Your cart</span></nav>
+    <div class="cart-title-row"><div><span class="eyebrow">Almost yours</span><h1>Your shopping cart <span id="cart-item-count" class="cart-item-count" aria-live="polite"></span></h1><p>Take one last look at your everyday favorites.</p></div><a class="continue-shopping" href="products.html"><span aria-hidden="true">←</span> Continue shopping</a></div>
+
+    <div id="cart-status" class="cart-status" role="alert" hidden></div>
+
+    <section id="cart-loading" class="cart-loading" aria-live="polite">
+      <span class="cart-spinner" aria-hidden="true"></span><p>Loading your cart…</p>
+      <div class="cart-skeleton" aria-hidden="true"><span></span><span></span><span></span></div>
+    </section>
+
+    <section id="cart-error" class="cart-state" role="alert" hidden>
+      <div class="cart-state-icon error-icon" aria-hidden="true">!</div><h2>We couldn't load your cart</h2><p id="cart-error-message">Please try again in a moment.</p><button id="retry-cart" class="button" type="button">Try again</button>
+    </section>
+
+    <section id="empty-cart" class="empty-cart" hidden aria-labelledby="empty-cart-title">
+      <div class="empty-cart-illustration" aria-hidden="true"><span class="empty-bag-handle"></span><span class="empty-bag-face"><b>S</b></span><span class="empty-spark empty-spark-one">✳</span><span class="empty-spark empty-spark-two">✦</span></div>
+      <span class="eyebrow">A fresh start</span><h2 id="empty-cart-title">Your cart is taking a little breather.</h2><p>It’s waiting for something good. Browse the collection and find a new favorite.</p><a class="button" href="products.html">Explore products <span aria-hidden="true">→</span></a>
+    </section>
+
+    <section id="cart-layout" class="cart-layout" hidden aria-label="Cart contents and summary">
+      <div class="cart-items-panel">
+        <div class="cart-items-header"><h2>Cart items</h2><button id="clear-cart" class="clear-cart-button" type="button">Clear cart</button></div>
+        <div id="cart-items" class="cart-items" aria-live="polite" aria-busy="false"></div>
+      </div>
+      <aside class="order-summary" aria-labelledby="summary-title">
+        <div class="summary-heading"><span class="summary-icon" aria-hidden="true">✦</span><h2 id="summary-title">Order summary</h2></div>
+        <div class="summary-line"><span>Items</span><span id="summary-item-count">—</span></div>
+        <div class="summary-total"><span>Total</span><strong id="summary-total">—</strong></div>
+        <p class="summary-note">Your total is calculated from current cart prices.</p>
+        <button id="checkout-button" class="button checkout-button" type="button">Continue to checkout <span aria-hidden="true">→</span></button>
+        <div class="secure-note"><span aria-hidden="true">♧</span><span>Checkout comes next. No order is placed from this page.</span></div>
+      </aside>
+    </section>
+
+    <div id="cart-action-loading" class="cart-action-loading" role="status" aria-live="polite" hidden><span class="cart-spinner small-spinner" aria-hidden="true"></span><span id="cart-action-loading-text">Updating your cart…</span></div>
+  </main>
+
+  <footer class="site-footer cart-footer"><div class="page-shell footer-bottom"><span>© 2026 ShopEase</span><span>Good finds for everyday moments <span class="footer-heart" aria-hidden="true">♥</span></span><div><a href="products.html">Continue shopping</a></div></div></footer>
+</body>
+</html>
